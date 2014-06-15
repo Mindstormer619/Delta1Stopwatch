@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Delta 1 Stopwatch</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="timeVal">0</string>
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
+    <string name="intro">
+        Hit start to begin stopwatch. You can<br />
+        pause time, reset, and add laps while<br />
+        stopwatch is running.</string>
+
+</resources>
