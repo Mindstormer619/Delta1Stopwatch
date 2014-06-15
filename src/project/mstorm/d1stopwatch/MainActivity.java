@@ -1,5 +1,7 @@
 package project.mstorm.d1stopwatch;
 
+import java.lang.ref.WeakReference;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,14 +10,23 @@ import android.app.Activity;
 
 public class MainActivity extends Activity {
 	TextView displayer;
-
-    Handler msgHandler = new Handler() {
-    	public void handleMessage(Message msg) {
-    		Bundle tBund = msg.getData();
+	
+	static class Mandler extends Handler {
+		private final WeakReference<TextView> tDis;
+		Mandler(TextView ts) {
+			tDis = new WeakReference<TextView>(ts);
+		}
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			Bundle tBund = msg.getData();
     		String tCurr = String.valueOf(tBund.getInt("time"));
-    		displayer.setText(tCurr);
-    	}
-    };
+    		tDis.get().setText(tCurr);
+		}
+	}
+
+    Mandler msgHandler = new Mandler(displayer);
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
